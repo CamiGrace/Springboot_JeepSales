@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,9 +54,11 @@ class FetchJeepTest extends FetchJeepTestSupport {
 	
 
 		//And: the actual list is the same as the expected list
+		List<Jeep> actual = response.getBody();
 		List<Jeep> expected = buildExpected();
-		System.out.println(expected);
-		assertThat(response.getBody()).isEqualTo(expected);
+	
+		
+		assertThat(actual).isEqualTo(expected);
 	
 	}
 	protected List<Jeep> buildExpected() {
@@ -81,7 +84,7 @@ class FetchJeepTest extends FetchJeepTestSupport {
 		
 		
 		//@formatter:on 
-		
+		Collections.sort(list);
 		return list;
 	}
 	
