@@ -1,8 +1,6 @@
 package com.promineotech.jeep.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -12,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.expression.spel.ast.Literal;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +20,6 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import com.promineotech.jeep.controller.support.FetchJeepTestSupport;
 import com.promineotech.jeep.entity.Jeep;
 import com.promineotech.jeep.entity.JeepModel;
-
-import lombok.Builder;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 
@@ -43,7 +38,7 @@ class FetchJeepTest extends FetchJeepTestSupport {
 		JeepModel model = JeepModel.WRANGLER;
 		String trim = "Sport";
 		String uri = 
-				String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
+				String.format("%s?model=%s&trim=%s", getBaseUriForJeeps(), model, trim);
 		
 		ResponseEntity<List<Jeep>> response = 
 				getRestTemplate().exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
